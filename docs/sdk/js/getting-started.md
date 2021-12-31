@@ -38,14 +38,15 @@ npm install @metaplex/js
 The following code snippet is the most basic one you can use to get Metadata information with this library:
 
 ```ts
-import { Connection, programs } from '@metaplex/js';
+import { Connection } from '@metaplex/js';
+import { Metadata } from "@metaplex-foundation/mpl-token-metadata";
 
 const connection = new Connection('devnet');
 const tokenPublicKey = 'Gz3vYbpsB2agTsAwedtvtTkQ1CG9vsioqLW3r9ecNpvZ';
 
 const run = async () => {
   try {
-    const ownedMetadata = await programs.metadata.Metadata.load(connection, tokenPublicKey);
+    const ownedMetadata = await Metadata.load(connection, tokenPublicKey);
     console.log(ownedMetadata);
   } catch {
     console.log('Failed to fetch metadata');
@@ -104,7 +105,8 @@ await <AccountType>.load(connection, pubkey);
 
 ```ts
 import { Connection, Account, programs } from '@metaplex/js';
-const { metaplex: { Store, AuctionManager }, metadata: { Metadata }, auction: { Auction }, vault: { Vault } } = programs;
+import { Metadata } from "@metaplex-foundation/mpl-token-metadata";
+const { metaplex: { Store, AuctionManager }, auction: { Auction }, vault: { Vault } } = programs;
 
 
 const connection = new Connection('devnet');
